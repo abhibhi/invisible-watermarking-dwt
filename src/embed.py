@@ -20,43 +20,6 @@ def calculate_psnr(original, modified):
     return 10 * np.log10((255 ** 2) / mse)
 
 
-def load_or_create_watermark(watermark_path, target_shape, text="MATH414"):
-    target_height, target_width = target_shape
-
-    if watermark_path.exists():
-        watermark = cv2.imread(str(watermark_path), cv2.IMREAD_GRAYSCALE)
-        if watermark is None:
-            raise FileNotFoundError(f"Could not load watermark at: {watermark_path}")
-    else:
-        watermark_path.parent.mkdir(parents=True, exist_ok=True)
-
-        # Create a simple text watermark as a sensible default.
-        watermark = np.zeros((120, 320), dtype=np.uint8)
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        text_scale = 2.0
-        text_thickness = 5
-        text_size, _ = cv2.getTextSize(text, font, text_scale, text_thickness)
-        text_x = (watermark.shape[1] - text_size[0]) // 2
-        text_y = (watermark.shape[0] + text_size[1]) // 2
-        cv2.putText(
-            watermark,
-            text,
-            (text_x, text_y),
-            font,
-            text_scale,
-            255,
-            text_thickness,
-            cv2.LINE_AA,
-        )
-        cv2.imwrite(str(watermark_path), watermark)
-
-    watermark = cv2.resize(
-        watermark, (target_width, target_height), interpolation=cv2.INTER_AREA
-    )
-    _, watermark = cv2.threshold(watermark, 127, 1, cv2.THRESH_BINARY)
-    return watermark.astype(np.float64)
-
-
 # set up paths
 base_dir = Path(__file__).resolve().parent.parent
 
@@ -78,10 +41,18 @@ coeffs = pywt.dwt2(img, "db4")
 LL, (LH, HL, HH) = coeffs
 
 # load a binary watermark image resized to the LH subband
-watermark = load_or_create_watermark(watermark_path, LH.shape)
+watermark = cv2.imread(str(watermark_path), cv2.IMREAD_GRAYSCALE)
+if watermark is None:
+    raise FileNotFoundError(f"Could not load watermark at: {watermark_path}")
+
+watermark = cv2.resize(
+    watermark, (LH.shape[1], LH.shape[0]), interpolation=cv2.INTER_AREA
+)
+_, watermark = cv2.threshold(watermark, 127, 1, cv2.THRESH_BINARY)
+watermark = watermark.astype(np.float64)
 
 # embed watermark into LH subband
-alpha = 0.05
+alpha = 1
 LH_watermarked = LH + alpha * watermark
 
 # reconstruct watermarked image

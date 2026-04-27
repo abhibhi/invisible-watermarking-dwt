@@ -15,20 +15,6 @@ def normalize_for_display(arr):
     return arr
 
 
-def load_watermark_for_comparison(watermark_path, target_shape):
-    watermark = cv2.imread(str(watermark_path), cv2.IMREAD_GRAYSCALE)
-
-    if watermark is None:
-        raise FileNotFoundError(f"Could not load watermark at: {watermark_path}")
-
-    target_height, target_width = target_shape
-    watermark = cv2.resize(
-        watermark, (target_width, target_height), interpolation=cv2.INTER_AREA
-    )
-    _, watermark = cv2.threshold(watermark, 127, 1, cv2.THRESH_BINARY)
-    return watermark.astype(np.float64)
-
-
 def correlation(original, extracted):
     original = original.flatten()
     extracted = extracted.flatten()
@@ -45,7 +31,7 @@ output_dir.mkdir(parents=True, exist_ok=True)
 
 extracted_path = output_dir / "extracted_watermark.png"
 
-alpha = 0.05
+alpha = 1
 
 original = cv2.imread(str(original_path), cv2.IMREAD_GRAYSCALE)
 watermarked = cv2.imread(str(watermarked_path), cv2.IMREAD_GRAYSCALE)
@@ -63,7 +49,15 @@ LL_o, (LH_o, HL_o, HH_o) = coeffs_original
 coeffs_watermarked = pywt.dwt2(watermarked, "db4")
 LL_w, (LH_w, HL_w, HH_w) = coeffs_watermarked
 
-watermark = load_watermark_for_comparison(watermark_path, LH_o.shape)
+watermark = cv2.imread(str(watermark_path), cv2.IMREAD_GRAYSCALE)
+if watermark is None:
+    raise FileNotFoundError(f"Could not load watermark at: {watermark_path}")
+
+watermark = cv2.resize(
+    watermark, (LH_o.shape[1], LH_o.shape[0]), interpolation=cv2.INTER_AREA
+)
+_, watermark = cv2.threshold(watermark, 127, 1, cv2.THRESH_BINARY)
+watermark = watermark.astype(np.float64)
 
 # Extract watermark from LH subband
 extracted = (LH_w - LH_o) / alpha
