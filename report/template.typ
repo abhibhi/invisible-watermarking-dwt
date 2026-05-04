@@ -131,6 +131,8 @@
   // ---------------- Bibliography ----------------
   if bibliography-file != none {
     pagebreak()
+    set par(leading: 0.65em)
+    set text(size: 11pt)
     bibliography(bibliography-file, title: "References", style: "ieee")
   }
 }
