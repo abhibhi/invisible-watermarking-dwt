@@ -1,0 +1,186 @@
+# Hayagriva bibliography for the MATH 414-501 final report.
+# Cite from Typst with @key, e.g. @mallat1989.
+
+mallat1989:
+  type: article
+  title: "A Theory for Multiresolution Signal Decomposition: The Wavelet Representation"
+  author: "Mallat, Stéphane G."
+  date: 1989-07
+  page-range: 674-693
+  parent:
+    type: periodical
+    title: IEEE Transactions on Pattern Analysis and Machine Intelligence
+    volume: 11
+    issue: 7
+
+daubechies1988:
+  type: article
+  title: Orthonormal Bases of Compactly Supported Wavelets
+  author: Daubechies, Ingrid
+  date: 1988-11
+  page-range: 909-996
+  parent:
+    type: periodical
+    title: Communications on Pure and Applied Mathematics
+    volume: 41
+    issue: 7
+
+daubechies1992:
+  type: book
+  title: Ten Lectures on Wavelets
+  author: Daubechies, Ingrid
+  date: 1992
+  publisher: SIAM
+  serial-number:
+    isbn: 978-0898712742
+
+cox1997:
+  type: article
+  title: Secure Spread Spectrum Watermarking for Multimedia
+  author:
+    - Cox, Ingemar J.
+    - Kilian, Joe
+    - Leighton, F. Thomson
+    - Shamoon, Talal
+  date: 1997-12
+  page-range: 1673-1687
+  parent:
+    type: periodical
+    title: IEEE Transactions on Image Processing
+    volume: 6
+    issue: 12
+
+wang1999wavemark:
+  type: article
+  title: "WaveMark: Digital Image Watermarking using Daubechies' Wavelets and Error-Correcting Coding"
+  author:
+    - Wang, Houng-Jyh M.
+    - Wiederhold, Gio
+  date: 1999
+  parent:
+    type: proceedings
+    title: "Proceedings of SPIE: Multimedia Systems and Applications II"
+    volume: 3528
+
+barni2001:
+  type: article
+  title: Improved Wavelet-Based Watermarking through Pixel-Wise Masking
+  author:
+    - Barni, Mauro
+    - Bartolini, Franco
+    - Piva, Alessandro
+  date: 2001-05
+  page-range: 783-791
+  parent:
+    type: periodical
+    title: IEEE Transactions on Image Processing
+    volume: 10
+    issue: 5
+
+cox2007book:
+  type: book
+  title: "Digital Watermarking and Steganography"
+  author:
+    - Cox, Ingemar J.
+    - Miller, Matthew L.
+    - Bloom, Jeffrey A.
+    - Fridrich, Jessica
+    - Kalker, Ton
+  date: 2007
+  edition: 2
+  publisher: Morgan Kaufmann
+  serial-number:
+    isbn: 978-0123725851
+
+burrus1998:
+  type: book
+  title: "Introduction to Wavelets and Wavelet Transforms: A Primer"
+  author:
+    - Burrus, C. Sidney
+    - Gopinath, Ramesh A.
+    - Guo, Haitao
+  date: 1998
+  publisher: Prentice Hall
+  serial-number:
+    isbn: 978-0134896007
+
+mallat2009book:
+  type: book
+  title: A Wavelet Tour of Signal Processing - The Sparse Way
+  author: "Mallat, Stéphane"
+  date: 2009
+  edition: 3
+  publisher: Academic Press
+  serial-number:
+    isbn: 978-0123743701
+
+pywavelets:
+  type: article
+  title: "PyWavelets: A Python package for wavelet analysis"
+  author:
+    - Lee, Gregory R.
+    - Gommers, Ralf
+    - Waselewski, Filip
+    - Wohlfahrt, Kai
+    - O'Leary, Aaron
+  date: 2019-04
+  page-range: 1237
+  parent:
+    type: periodical
+    title: Journal of Open Source Software
+    volume: 4
+    issue: 36
+
+opencv:
+  type: article
+  title: The OpenCV Library
+  author: Bradski, Gary
+  date: 2000
+  parent:
+    type: periodical
+    title: "Dr. Dobb's Journal of Software Tools"
+
+numpy:
+  type: article
+  title: Array programming with NumPy
+  author:
+    - Harris, Charles R.
+    - Millman, K. Jarrod
+    - van der Walt, Stéfan J.
+    - "and others"
+  date: 2020-09
+  page-range: 357-362
+  parent:
+    type: periodical
+    title: Nature
+    volume: 585
+    issue: 7825
+
+jpeg2000:
+  type: article
+  title: "The JPEG 2000 still image compression standard"
+  author:
+    - Skodras, Athanassios
+    - Christopoulos, Charilaos
+    - Ebrahimi, Touradj
+  date: 2001-09
+  page-range: 36-58
+  parent:
+    type: periodical
+    title: IEEE Signal Processing Magazine
+    volume: 18
+    issue: 5
+
+chen2001qim:
+  type: article
+  title: "Quantization Index Modulation: A Class of Provably Good Methods for Digital Watermarking and Information Embedding"
+  author:
+    - Chen, Brian
+    - Wornell, Gregory W.
+  date: 2001-05
+  page-range: 1423-1443
+  parent:
+    type: periodical
+    title: IEEE Transactions on Information Theory
+    volume: 47
+    issue: 4
